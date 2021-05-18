@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @NoArgsConstructor
-public class Posts {
+public class Posts extends BaseTimeEntity{
 
     @Id
     @GeneratedValue
@@ -33,6 +33,7 @@ public class Posts {
     }
 
 
+    // 업데이트
     public void update(String title, String content) {
         this.title = title;
         this.content = content;
