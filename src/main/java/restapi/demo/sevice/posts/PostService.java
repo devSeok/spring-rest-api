@@ -8,9 +8,12 @@ import restapi.demo.domain.posts.Posts;
 import restapi.demo.domain.posts.PostsRepository;
 import restapi.demo.web.dto.PostResponseDto;
 import restapi.demo.web.dto.PostUpdateRequestDto;
+import restapi.demo.web.dto.PostsListResponseDto;
 import restapi.demo.web.dto.PostsSaveRequestDto;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -38,6 +41,13 @@ public class PostService {
         posts.update(requestDto.getTitle(), requestDto.getContent());
 
         return id;
+    }
+
+    @Transactional(readOnly = true)
+    public List<PostsListResponseDto> findAllDesc() {
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new) // posts -> new PostsListResponseDto(posts)
+                .collect(Collectors.toList());
     }
 
 }
