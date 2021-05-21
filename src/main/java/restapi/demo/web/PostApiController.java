@@ -28,6 +28,9 @@ public class PostApiController {
     @PutMapping("/api/v1/posts/{id}")
     public Long update(@PathVariable Long id, @RequestBody PostUpdateRequestDto requestDto ) {
 
+        System.out.println(id);
+        System.out.println(requestDto.toString());
+
         return postService.update(id, requestDto);
     }
 

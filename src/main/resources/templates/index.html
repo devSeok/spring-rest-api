@@ -17,8 +17,13 @@
         <div class="row">
             <div class="col-md-6">
                 <a href="/posts/save" role="button" class="btn btn-primary">글 등록</a>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+
+                <span th:if="${userName != null }">
+                <a href="/logout"  class="btn btn-info active" role="button">Logout</a>
+                        <span th:text="${userName}"></span>
+                </span>
+                <a href="/oauth2/authorization/google" th:if="${userName == null}" class="btn btn-success active" role="button">Google Login</a>
+
                 <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
             </div>
         </div>
@@ -34,14 +39,14 @@
             </tr>
             </thead>
             <tbody id="tbody">
-            {{#posts}}
-            <tr>
-                <td>{{id}}</td>
-                <td><a href="/posts/update/{{id}}">{{title}}</a></td>
-                <td>{{author}}</td>
-                <td>{{modifiedDate}}</td>
+            <tr th:each="post : ${posts}">
+                <td th:text="${post.id}"></td>
+                <td>
+                    <a th:text="${post.title}" th:href="@{/posts/update/__${post.id}__}"></a>
+                </td>
+                <td th:text="${post.author}"></td>
+                <td th:text="${post.modifiedDate}"></td>
             </tr>
-            {{/posts}}
             </tbody>
         </table>
     </div>
