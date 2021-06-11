@@ -1,0 +1,21 @@
+### 업데이트
+PUT http://localhost:8080/api/v1/posts/1
+Content-Type: application/json;
+Accept: application/json;
+
+{
+  "title" : "333333333",
+  "content" : "4444444444444"
+}
+
+###  저장
+POST http://localhost:8080/api/v1/posts
+Content-Type: application/json;
+Accept: application/json
+
+{
+  "title" : "test",
+  "content" : "test1",
+  "author" : "sdad"
+}
+
