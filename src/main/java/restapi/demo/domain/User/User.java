@@ -12,7 +12,7 @@ import javax.persistence.*;
 @Entity
 public class User extends BaseTimeEntity{
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(nullable = false)  // 널이 될수가 없다.
